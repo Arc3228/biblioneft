@@ -17,9 +17,9 @@ margin: 0 auto;
 background-color: #03030A;
 height: 200px;
 display: flex;
-
+flex-direction: row;
 }
 
 .logo {
-
+margin-top: 30px;
 }
