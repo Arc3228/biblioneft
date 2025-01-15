@@ -13,13 +13,26 @@ max-width: 1720px;
 margin: 0 auto;
 }
 
+a {
+text-decoration: none;
+}
+
 .header {
 background-color: #03030A;
-height: 200px;
 display: flex;
-flex-direction: row;
+justify-content: space between;
 }
 
 .logo {
-margin-top: 30px;
+padding-top: 30px;
+padding-bottom: 30px;
+}
+
+.nav ul {
+display: flex;
+gap: 25px;
+}
+
+.nav ul li {
+list-style: none;
 }
