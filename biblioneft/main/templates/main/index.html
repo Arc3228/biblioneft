@@ -17,32 +17,46 @@
       </div>
         <nav class="nav">
             <ul>
-                <li>
+                <li><p class="odd" onclick="openDropdown">О библиотеке</p>
                     <select>
                         <option value="История библиотеки"><a href="#">История библиотеки</a></option>
                         <option value="Гранты"><a href="#">Гранты</a></option>
                         <option value="Проекты"><a href="#">Проекты</a></option>
                     </select>
                 </li>
-                <li>
+                <li><p class="odd" onclick="openDropdown">Пространства</p>
                     <select>
-                        <option value="История библиотеки"><a href="#">История библиотеки</a></option>
-                        <option value="Гранты"><a href="#">Гранты</a></option>
-                        <option value="Проекты"><a href="#">Проекты</a></option>
-                        <option value="Проекты"><a href="#">Проекты</a></option>
+                        <option value="История библиотеки"><a href="#">Читальный зал</a></option>
+                        <option value="Гранты"><a href="#">Проектый офис</a></option>
+                        <option value="Проекты"><a href="#">Тайм-кафе</a></option>
+                        <option value="Проекты"><a href="#">Лекторий</a></option>
                     </select>
                 </li>
-                <li>
+                <li><p class="odd" onclick="openDropdown">Читателям</p>
                     <select>
-                        <option value="История библиотеки"><a href="#">История библиотеки</a></option>
-                        <option value="Гранты"><a href="#">Гранты</a></option>
-                        <option value="Проекты"><a href="#">Проекты</a></option>
+                        <option value="История библиотеки"><a href="#">Как записаться</a></option>
+                        <option value="Гранты"><a href="#">График работы</a></option>
+                        <option value="Проекты"><a href="#">Фото-обзор</a></option>
                     </select>
                 </li>
-                <li><a href="#">ДК "Нефтьче"</a></li>
+                <li><a class="odd" href="#">ДК "Нефтьче"</a></li>
             </ul>
+            <div class="search">
+                <div class="search-bar">
+
+                </div>
+            </div>
         </nav>
-        <div class="reg"></div>
+        <div class="reg">
+            <div class="reg-group">
+                <a href="#">Стать читателем</a>
+                <a href="#"><img src="{% static 'images/user.svg' %}" alt=""></a>
+            </div>
+            <div class="contacts">
+                <a href="#">biblioneft@rambler.ru <img src="{% static 'images/mail.svg' %}" alt=""></a>
+                <a href="#">+7 (8553) 32-70-50 <img src="{% static 'images/phone-call.svg' %}" alt=""></a>
+            </div>
+        </div>
     </div>
   </header>
 </body>

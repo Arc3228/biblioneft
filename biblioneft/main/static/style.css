@@ -36,3 +36,12 @@ gap: 25px;
 .nav ul li {
 list-style: none;
 }
+
+.odd {
+cursor: pointer;
+transition: .3s;
+}
+
+.odd:hover {
+color: #C7B475;
+}
