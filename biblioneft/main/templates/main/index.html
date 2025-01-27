@@ -11,7 +11,7 @@
 </head>
 <body>
   <header class = "header">
-    <div class="container">
+    <div class="container wrapper">
       <div class="logo">
         <a href = "#"><img src="{% static 'images/white-logo.svg' %}" alt="logo"></a>
       </div>
@@ -43,14 +43,16 @@
             </ul>
             <div class="search">
                 <div class="search-bar">
-
+                    <form>
+                        <input type="text" placeholder="Поиск по сайту">
+                    </form>
                 </div>
             </div>
         </nav>
         <div class="reg">
             <div class="reg-group">
-                <a href="#">Стать читателем</a>
-                <a href="#"><img src="{% static 'images/user.svg' %}" alt=""></a>
+                <a class="chit" href="#">Стать читателем</a>
+                <a class="user" href="#"><img src="{% static 'images/user.svg' %}" alt=""></a>
             </div>
             <div class="contacts">
                 <a href="#">biblioneft@rambler.ru <img src="{% static 'images/mail.svg' %}" alt=""></a>

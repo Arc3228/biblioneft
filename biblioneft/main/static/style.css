@@ -5,12 +5,18 @@ box-sizing: border-box;
 margin: 0;
 padding: 0;
 font-family: Unbounded;
-color: white
+color: #03030A;
 }
 
 .container {
 max-width: 1720px;
 margin: 0 auto;
+}
+
+.wrapper {
+display: flex;
+justify-content: space-between;
+align-items: center;
 }
 
 a {
@@ -19,8 +25,6 @@ text-decoration: none;
 
 .header {
 background-color: #03030A;
-display: flex;
-justify-content: space between;
 }
 
 .logo {
@@ -28,8 +32,15 @@ padding-top: 30px;
 padding-bottom: 30px;
 }
 
+.nav {
+display: flex;
+flex-direction: column;
+gap: 50px;
+}
+
 .nav ul {
 display: flex;
+align-content: center;
 gap: 25px;
 }
 
@@ -37,11 +48,62 @@ gap: 25px;
 list-style: none;
 }
 
+.nav ul li select {
+display: none;
+}
+
 .odd {
 cursor: pointer;
 transition: .3s;
+color: #F3F3F3;
 }
 
 .odd:hover {
 color: #C7B475;
+}
+
+.search-bar input{
+width: 450px;
+border: #C7B475 3px solid;
+border-radius: 5px;
+outline: none;
+color: #03030A;
+padding:  5px 10px;
+}
+
+.reg-group {
+display: flex;
+gap: 20px;
+padding-bottom: 25px;
+}
+
+.reg-group a{
+background: #255727;
+padding: 5px 15px;
+border-radius: 10px;
+display: block;
+color: #F3F3F3;
+}
+
+.reg-group .chit {
+width: 137px;
+text-align: center;
+color: #F3F3F3;
+}
+
+.reg-group .user {
+width: 70px;
+}
+
+.contacts {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.contacts a {
+color: #F3F3F3;
+display: flex;
+gap: 5px;
+align-items: center;
 }
