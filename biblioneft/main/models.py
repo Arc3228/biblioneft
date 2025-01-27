@@ -31,8 +31,8 @@ class User(AbstractBaseUser):
     education = models.CharField(max_length=100)
     prof = models.CharField(max_length=100)
     study_work = models.CharField(max_length=100)
-    phone = models.CharField(max_length=20, unique=True)
-    passport = models.CharField(max_length=11)
+    phone = models.CharField(max_length=18, unique=True)
+    passport = models.CharField(max_length=11, unique=True)
     given = models.CharField(max_length=100)
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = ['name', 'surname', 'lastname', 'date_of_birth', 'education', 'prof', 'study_work', 'passport', 'given']

@@ -3,7 +3,7 @@ from .models import User
 
 
 class LoginForm(forms.Form):
-    phone = forms.CharField(label="Телефон", max_length=20)
+    phone = forms.CharField(label="Телефон", max_length=18)
     password = forms.CharField(label="Пароль", widget=forms.PasswordInput)
 
 
@@ -16,16 +16,16 @@ class RegistrationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = [
-            "name",
-            "surname",
-            "lastname",
-            "date_of_birth",
-            "education",
-            "prof",
-            "study_work",
-            "phone",
-            "passport",
-            "given",
+            "Фамилия",
+            "Имя",
+            "Отчество",
+            "Дата рождения",
+            "Образование",
+            "Профессия",
+            "Место учёбы/работы",
+            "Контактный телефон",
+            "Паспортные данные",
+            "Кем выдан",
         ]
 
     def clean(self):
