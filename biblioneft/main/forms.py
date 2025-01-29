@@ -3,8 +3,8 @@ from .models import User
 
 
 class LoginForm(forms.Form):
-    phone = forms.CharField(label="Телефон", max_length=18)
-    password = forms.CharField(label="Пароль", widget=forms.PasswordInput)
+    phone = forms.CharField(label="Телефон", max_length=18, widget=forms.TextInput(attrs={"placeholder": 'Номер телефона'}))
+    password = forms.CharField(label="Пароль", widget=forms.PasswordInput(attrs={"placeholder": 'Введите пароль'}))
 
 
 class RegistrationForm(forms.ModelForm):
@@ -43,15 +43,15 @@ class RegistrationForm(forms.ModelForm):
             "surname": forms.TextInput(attrs={"placeholder": "Введите фамилию"}),
             "name": forms.TextInput(attrs={"placeholder": "Введите имя"}),
             "lastname": forms.TextInput(attrs={"placeholder": "Введите отчество"}),
-            "date_of_birth": forms.DateInput(attrs={"placeholder": "дд.мм.гггг", "type": "date"}),
+            "date_of_birth": forms.DateInput(attrs={"placeholder": "Дата рождения", "type": "date"}),
             "education": forms.TextInput(attrs={"placeholder": "Введите образование"}),
             "prof": forms.TextInput(attrs={"placeholder": "Введите профессию"}),
             "study_work": forms.TextInput(attrs={"placeholder": "Введите место учебы/работы"}),
             "phone": forms.TextInput(attrs={"placeholder": "Введите телефон", "id": 'id_phone'}),
             "passport": forms.TextInput(attrs={"placeholder": "Введите паспортные данные", "id": 'id_passport'}),
             "given": forms.TextInput(attrs={"placeholder": "Кем выдан паспорт"}),
-            "password": forms.TextInput(attrs={"placeholder": "Пароль", }),
-            "password_confirm": forms.TextInput(attrs={"placeholder": "Пароль"}),
+            "password": forms.TextInput(attrs={"placeholder": "Пароль", "class": 'password_wrapper'}),
+            "password_confirm": forms.TextInput(attrs={"placeholder": "Пароль", "class": 'password_wrapper'}),
 
         }
 

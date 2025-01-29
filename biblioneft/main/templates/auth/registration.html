@@ -24,7 +24,7 @@
         <div class="password-wrapper">
             {{ form.password }}
             <button type="button" class="toggle-password" onclick="togglePasswordVisibility('id_password', 'toggle-password-btn')">
-                👁️
+                <i class="fas fa-eye"></i>
             </button>
         </div>
     </div>
@@ -35,7 +35,7 @@
         <div class="password-wrapper">
             {{ form.password_confirm }}
             <button type="button" class="toggle-password" onclick="togglePasswordVisibility('id_password_confirm', 'toggle-password-confirm-btn')">
-                👁️
+                <i class="fas fa-eye"></i>
             </button>
         </div>
     </div>
@@ -63,17 +63,20 @@
         showMaskOnHover: false,
         showMaskOnFocus: true,
     }).document.getElementById("id_passport");
-    function togglePasswordVisibility(inputId) {
-        const input = document.getElementById(inputId);
-        const button = input.nextElementSibling; // Кнопка "глазик" рядом с полем
 
-        if (input.type === "password") {
-            input.type = "text";
-            button.innerHTML = "👁️‍🗨️"; // Иконка "глаз закрыт"
-        } else {
-            input.type = "password";
-            button.innerHTML = "👁️"; // Иконка "глаз открыт"
-        }
+    function togglePasswordVisibility(inputId) {
+    const input = document.getElementById(inputId);
+    const button = input.nextElementSibling.querySelector('i'); // Иконка внутри кнопки
+
+    if (input.type === "password") {
+        input.type = "text";
+        button.classList.remove('fa-eye');
+        button.classList.add('fa-eye-slash'); // Иконка "глаз закрыт"
+    } else {
+        input.type = "password";
+        button.classList.remove('fa-eye-slash');
+        button.classList.add('fa-eye'); // Иконка "глаз открыт"
     }
+}
 </script>
 {% endblock %}

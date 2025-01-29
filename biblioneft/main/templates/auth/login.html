@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Авторизация</h2>
+<h2 class="page_title">Авторизация</h2>
 {% if messages %}
     <ul class="messages">
         {% for message in messages %}
@@ -11,8 +11,33 @@
 {% endif %}
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Войти</button>
+    {{ form.phone }}
+    <div class="form-group">
+        {{ form.password.label_tag }}
+        <div class="password-wrapper">
+            {{ form.password }}
+            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('id_password', 'toggle-password-btn')">
+                <i class="fas fa-eye"></i>
+            </button>
+        </div>
+    </div>
+    <button class="reg_btn" type="submit">Войти</button>
+    <p class="have_acc">Еще нет аккаунта? <a class="reg_to_auth" href="{% url 'registration' %}">Зарегистрироваться</a></p>
 </form>
-<p>Еще нет аккаунта? <a href="{% url 'registration' %}">Зарегистрироваться</a></p>
+<script>
+    function togglePasswordVisibility(inputId) {
+    const input = document.getElementById(inputId);
+    const button = input.nextElementSibling.querySelector('i'); // Иконка внутри кнопки
+
+    if (input.type === "password") {
+        input.type = "text";
+        button.classList.remove('fa-eye');
+        button.classList.add('fa-eye-slash'); // Иконка "глаз закрыт"
+    } else {
+        input.type = "password";
+        button.classList.remove('fa-eye-slash');
+        button.classList.add('fa-eye'); // Иконка "глаз открыт"
+    }
+}
+</script>
 {% endblock %}
