@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Регистрация</h2>
+<h2 class="page_title">Регистрация</h2>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Зарегистрироваться</button>
+    <button class="reg_btn" type="submit">Зарегистрироваться</button>
+    <div class="checkbox">
+        <input class="terms" type="checkbox" name="terms" id="terms" required>
+        <label class="terms" for="terms">Я даю согласие на обработку персональных данных</label>
+    </div>
+    <p class="have_acc">Уже есть аккаунт? <a class="reg_to_auth" href="{% url 'login' %}">Войти в аккаунт</a></p>
 </form>
-<p>Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
 {% endblock %}
+

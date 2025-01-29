@@ -9,7 +9,8 @@ color: #03030A;
 }
 
 .container {
-max-width: 1720px;
+max-width: 1680px;
+padding: 0 20px;
 margin: 0 auto;
 }
 
@@ -66,9 +67,16 @@ color: #C7B475;
 width: 450px;
 border: #C7B475 3px solid;
 border-radius: 5px;
+background: #F3F3F3;
+font-size: 16px;
+
 outline: none;
-color: #03030A;
 padding:  5px 10px;
+}
+
+.search-bar input::placeholder {
+color: #A4A4A4;
+font-size: 16px;
 }
 
 .reg-group {
@@ -106,4 +114,69 @@ color: #F3F3F3;
 display: flex;
 gap: 5px;
 align-items: center;
+}
+
+.page_title {
+text-align: center;
+font-size: 24px;
+padding: 50px 0;
+}
+
+form {
+display: flex;
+flex-direction: column;
+margin: 0 auto;
+max-width: 455px;
+gap: 10px;
+}
+
+form label {
+display: none;
+}
+
+form input {
+border: 3px solid #C7B475;
+background: #f3f3f3;
+outline: none;
+border-radius: 5px;
+padding: 5px 10px;
+width: 450px;
+}
+
+form input::placeholder {
+color: #A4A4A4;
+}
+
+.reg_btn {
+align-self: center;
+padding: 15px 5px;
+max-width: 220px;
+border: none;
+border-radius: 5px;
+background: #255727;
+color: #F3F3F3;
+font-size: 16px;
+}
+
+.checkbox {
+display: flex;
+gap: 10px;
+width: inherit;
+}
+
+.checkbox input {
+width: 15px;
+}
+
+.terms {
+display: block;
+font-size: 12px;
+}
+
+.have_acc {
+font-size: 12px;
+}
+
+.reg_to_auth {
+color: #C7B475;
 }
