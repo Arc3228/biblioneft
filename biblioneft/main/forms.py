@@ -47,9 +47,12 @@ class RegistrationForm(forms.ModelForm):
             "education": forms.TextInput(attrs={"placeholder": "Введите образование"}),
             "prof": forms.TextInput(attrs={"placeholder": "Введите профессию"}),
             "study_work": forms.TextInput(attrs={"placeholder": "Введите место учебы/работы"}),
-            "phone": forms.TextInput(attrs={"placeholder": "Введите телефон"}),
-            "passport": forms.TextInput(attrs={"placeholder": "Введите паспортные данные"}),
+            "phone": forms.TextInput(attrs={"placeholder": "Введите телефон", "id": 'id_phone'}),
+            "passport": forms.TextInput(attrs={"placeholder": "Введите паспортные данные", "id": 'id_passport'}),
             "given": forms.TextInput(attrs={"placeholder": "Кем выдан паспорт"}),
+            "password": forms.TextInput(attrs={"placeholder": "Пароль", }),
+            "password_confirm": forms.TextInput(attrs={"placeholder": "Пароль"}),
+
         }
 
     def clean(self):

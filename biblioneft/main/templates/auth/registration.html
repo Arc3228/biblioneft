@@ -4,7 +4,41 @@
 <h2 class="page_title">Регистрация</h2>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+
+
+
+    <!-- Остальные поля формы -->
+    {{ form.surname }}
+    {{ form.name }}
+    {{ form.lastname }}
+    {{ form.date_of_birth }}
+    {{ form.education }}
+    {{ form.prof }}
+    {{ form.study_work }}
+    {{ form.phone }}
+    {{ form.passport }}
+    {{ form.given }}
+    <!-- Поле пароля -->
+    <div class="form-group">
+        {{ form.password.label_tag }}
+        <div class="password-wrapper">
+            {{ form.password }}
+            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('id_password', 'toggle-password-btn')">
+                👁️
+            </button>
+        </div>
+    </div>
+
+    <!-- Поле подтверждения пароля -->
+    <div class="form-group">
+        {{ form.password_confirm.label_tag }}
+        <div class="password-wrapper">
+            {{ form.password_confirm }}
+            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('id_password_confirm', 'toggle-password-confirm-btn')">
+                👁️
+            </button>
+        </div>
+    </div>
     <button class="reg_btn" type="submit">Зарегистрироваться</button>
     <div class="checkbox">
         <input class="terms" type="checkbox" name="terms" id="terms" required>
@@ -12,5 +46,34 @@
     </div>
     <p class="have_acc">Уже есть аккаунт? <a class="reg_to_auth" href="{% url 'login' %}">Войти в аккаунт</a></p>
 </form>
-{% endblock %}
 
+<script>
+    // Инициализация маски для телефона
+    Inputmask({
+        mask: "+7 (999) 999-99-99",
+        placeholder: "_",
+        showMaskOnHover: false,
+        showMaskOnFocus: true,
+    }).document.getElementById("id_phone");
+
+    // Инициализация маски для паспорта
+    Inputmask({
+        mask: "9999 999999",
+        placeholder: "_",
+        showMaskOnHover: false,
+        showMaskOnFocus: true,
+    }).document.getElementById("id_passport");
+    function togglePasswordVisibility(inputId) {
+        const input = document.getElementById(inputId);
+        const button = input.nextElementSibling; // Кнопка "глазик" рядом с полем
+
+        if (input.type === "password") {
+            input.type = "text";
+            button.innerHTML = "👁️‍🗨️"; // Иконка "глаз закрыт"
+        } else {
+            input.type = "password";
+            button.innerHTML = "👁️"; // Иконка "глаз открыт"
+        }
+    }
+</script>
+{% endblock %}
