@@ -22,7 +22,7 @@ def login_view(request):
             user = authenticate(request, phone=phone, password=password)
             if user:
                 login(request, user)
-                return redirect("home")  # Замените 'home' на URL вашей главной страницы
+                return redirect("profile")  # Замените 'home' на URL вашей главной страницы
             else:
                 messages.error(request, "Неверный телефон или пароль")
     else:
@@ -39,7 +39,7 @@ def registration_view(request):
             user.username = form.cleaned_data['phone']
             user.save()
             login(request, user)
-            return redirect("home")  # Замените 'home' на URL вашей главной страницы
+            return redirect("profile")  # Замените 'home' на URL вашей главной страницы
     else:
         form = RegistrationForm()
     return render(request, "auth/registration.html", {"form": form})

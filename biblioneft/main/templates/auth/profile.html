@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Профиль</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
     <h2>Профиль пользователя</h2>
     <p><strong>Имя:</strong> {{ user.name }}</p>
     <p><strong>Фамилия:</strong> {{ user.surname }}</p>
@@ -16,5 +13,4 @@
     <p><strong>Паспорт:</strong> {{ user.passport }}</p>
     <p><strong>Кем выдан:</strong> {{ user.given }}</p>
     <a href="{% url 'login' %}">Выйти</a>
-</body>
-</html>
+{% endblock %}

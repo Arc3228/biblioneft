@@ -8,25 +8,49 @@ class LoginForm(forms.Form):
 
 
 class RegistrationForm(forms.ModelForm):
-    password = forms.CharField(label="Пароль", widget=forms.PasswordInput)
+    password = forms.CharField(label="Пароль", widget=forms.PasswordInput(attrs={"placeholder": "Введите пароль"}))
     password_confirm = forms.CharField(
-        label="Подтверждение пароля", widget=forms.PasswordInput
+        label="Подтверждение пароля", widget=forms.PasswordInput(attrs={"placeholder": "Подтвердите пароль"})
     )
 
     class Meta:
         model = User
         fields = [
-            "Фамилия",
-            "Имя",
-            "Отчество",
-            "Дата рождения",
-            "Образование",
-            "Профессия",
-            "Место учёбы/работы",
-            "Контактный телефон",
-            "Паспортные данные",
-            "Кем выдан",
+            "surname",
+            "name",
+            "lastname",
+            "date_of_birth",
+            "education",
+            "prof",
+            "study_work",
+            "phone",
+            "passport",
+            "given",
         ]
+        labels = {
+            "surname": "Фамилия",
+            "name": "Имя",
+            "lastname": "Отчество",
+            "date_of_birth": "Дата рождения",
+            "education": "Образование",
+            "prof": "Профессия",
+            "study_work": "Место учебы/работы",
+            "phone": "Телефон",
+            "passport": "Паспорт",
+            "given": "Кем выдан",
+        }
+        widgets = {
+            "surname": forms.TextInput(attrs={"placeholder": "Введите фамилию"}),
+            "name": forms.TextInput(attrs={"placeholder": "Введите имя"}),
+            "lastname": forms.TextInput(attrs={"placeholder": "Введите отчество"}),
+            "date_of_birth": forms.DateInput(attrs={"placeholder": "дд.мм.гггг", "type": "date"}),
+            "education": forms.TextInput(attrs={"placeholder": "Введите образование"}),
+            "prof": forms.TextInput(attrs={"placeholder": "Введите профессию"}),
+            "study_work": forms.TextInput(attrs={"placeholder": "Введите место учебы/работы"}),
+            "phone": forms.TextInput(attrs={"placeholder": "Введите телефон"}),
+            "passport": forms.TextInput(attrs={"placeholder": "Введите паспортные данные"}),
+            "given": forms.TextInput(attrs={"placeholder": "Кем выдан паспорт"}),
+        }
 
     def clean(self):
         cleaned_data = super().clean()

@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Авторизация</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
 <h2>Авторизация</h2>
 {% if messages %}
     <ul class="messages">
@@ -18,5 +15,4 @@
     <button type="submit">Войти</button>
 </form>
 <p>Еще нет аккаунта? <a href="{% url 'registration' %}">Зарегистрироваться</a></p>
-</body>
-</html>
+{% endblock %}
