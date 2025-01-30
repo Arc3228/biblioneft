@@ -1,3 +1,5 @@
+from datetime import date
+
 from django import forms
 from .models import User
 
@@ -5,6 +7,10 @@ from .models import User
 class LoginForm(forms.Form):
     phone = forms.CharField(label="Телефон", max_length=18, widget=forms.TextInput(attrs={"placeholder": 'Номер телефона'}))
     password = forms.CharField(label="Пароль", widget=forms.PasswordInput(attrs={"placeholder": 'Введите пароль'}))
+
+
+class ValidationError(Exception):
+    pass
 
 
 class RegistrationForm(forms.ModelForm):
@@ -55,12 +61,48 @@ class RegistrationForm(forms.ModelForm):
 
         }
 
+    def clean_date_of_birth(self):
+        date_of_birth = self.cleaned_data.get('date_of_birth')
+        if date_of_birth > date.today():
+            raise ValidationError("Дата рождения не может быть в будущем.")
+        return date_of_birth
+
+    def clean_phone(self):
+        phone = self.cleaned_data.get('phone')
+        if not re.match(r'^\+7\d{10}$', phone):  # Пример для российских номеров: +71234567890
+            raise ValidationError("Телефон должен быть в формате +71234567890.")
+        return phone
+
+    def clean_passport(self):
+        passport = self.cleaned_data.get('passport')
+        if not passport.isdigit() or len(passport) != 10:  # Пример: 10 цифр
+            raise ValidationError("Паспортные данные должны состоять из 10 цифр.")
+        return passport
+
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        if not name.isalpha():
+            raise ValidationError("Имя должно содержать только буквы.")
+        return name
+
+    def clean_surname(self):
+        surname = self.cleaned_data.get('surname')
+        if not surname.isalpha():
+            raise ValidationError("Фамилия должна содержать только буквы.")
+        return surname
+
+    def clean_lastname(self):
+        lastname = self.cleaned_data.get('lastname')
+        if lastname and not lastname.isalpha():  # Отчество может быть пустым
+            raise ValidationError("Отчество должно содержать только буквы.")
+        return lastname
+
     def clean(self):
         cleaned_data = super().clean()
         password = cleaned_data.get("password")
         password_confirm = cleaned_data.get("password_confirm")
 
         if password and password_confirm and password != password_confirm:
-            raise forms.ValidationError("Пароли не совпадают")
+            raise ValidationError("Пароли не совпадают")
 
         return cleaned_data
