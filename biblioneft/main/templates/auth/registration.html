@@ -1,20 +1,38 @@
 {% extends 'base.html' %}
-
+<!-- Подключение библиотеки Inputmask -->
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- Inputmask -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/jquery.inputmask.min.js"></script>
 {% block content %}
+
 <h2 class="page_title">Регистрация</h2>
 <form method="post">
     {% csrf_token %}
 
     <!-- Остальные поля формы -->
     {{ form.surname }}
+    <div class="invalid-feedback">
+        Фамилия должна содержать только русские буквы
+    </div>
     {{ form.name }}
+    <div class="invalid-feedback">
+        Имя должно содержать только русские буквы
+    </div>
     {{ form.lastname }}
+    <div class="invalid-feedback">
+        Отчество должно содержать только русские буквы
+    </div>
     {{ form.date_of_birth }}
     {{ form.education }}
     {{ form.prof }}
     {{ form.study_work }}
     {{ form.phone }}
+
     {{ form.passport }}
+    <div class="invalid-feedback">
+        Паспортные данные должны состоять из 10 цифр.
+    </div>
     {{ form.given }}
     <!-- Поле пароля -->
     <div class="form-group">
@@ -45,14 +63,13 @@
     <p class="have_acc">Уже есть аккаунт? <a class="reg_to_auth" href="{% url 'login' %}">Войти в аккаунт</a></p>
 </form>
 
+
+
+
 <script>
-    // Инициализация маски для телефона
-    Inputmask({
-        mask: "+7 (999) 999-99-99",
-        placeholder: "_",
-        showMaskOnHover: false,
-        showMaskOnFocus: true,
-    }).document.getElementById("id_phone");
+    $(document).ready(function(){
+        $('#tel').mask('+7 (000) 000-00-00');
+    });
 
     // Инициализация маски для паспорта
     Inputmask({
@@ -60,21 +77,42 @@
         placeholder: "_",
         showMaskOnHover: false,
         showMaskOnFocus: true,
-    }).document.getElementById("id_passport");
+    }).mask(document.getElementById("id_passport")); // Используйте .mask() вместо .document.getElementById()
 
     function togglePasswordVisibility(inputId) {
-    const input = document.getElementById(inputId);
-    const button = input.nextElementSibling.querySelector('i'); // Иконка внутри кнопки
+        const input = document.getElementById(inputId);
+        const button = input.nextElementSibling.querySelector('i'); // Иконка внутри кнопки
 
-    if (input.type === "password") {
-        input.type = "text";
-        button.classList.remove('fa-eye');
-        button.classList.add('fa-eye-slash'); // Иконка "глаз закрыт"
-    } else {
-        input.type = "password";
-        button.classList.remove('fa-eye-slash');
-        button.classList.add('fa-eye'); // Иконка "глаз открыт"
+        if (input.type === "password") {
+            input.type = "text";
+            button.classList.remove('fa-eye');
+            button.classList.add('fa-eye-slash'); // Иконка "глаз закрыт"
+        } else {
+            input.type = "password";
+            button.classList.remove('fa-eye-slash');
+            button.classList.add('fa-eye'); // Иконка "глаз открыт"
+        }
     }
-}
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const fields = document.querySelectorAll("input, select, textarea");
+
+        fields.forEach(field => {
+            field.addEventListener("input", function () {
+                if (field.checkValidity()) {
+                    field.classList.remove("is-invalid");
+                    field.classList.add("is-valid");
+                } else {
+                    field.classList.remove("is-valid");
+                    field.classList.add("is-invalid");
+                }
+            });
+            field.addEventListener("blur", function () {
+                if (!field.checkValidity()) {
+                    field.classList.add("is-invalid");
+                }
+            });
+        });
+    });
 </script>
 {% endblock %}

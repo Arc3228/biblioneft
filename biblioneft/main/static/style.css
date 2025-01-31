@@ -211,3 +211,23 @@ color: #C7B475;
 .toggle-password:active {
     transform: scale(0.9); /* Легкое уменьшение кнопки при нажатии */
 }
+
+.is-valid {
+        border-color: #28a745 !important; /* Зеленая рамка для валидных полей */
+    }
+
+    .is-invalid {
+        border-color: #dc3545 !important; /* Красная рамка для невалидных полей */
+    }
+
+    .invalid-feedback {
+        display: none;
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 80%;
+        color: #dc3545;
+    }
+
+    .is-invalid + .invalid-feedback {
+        display: block;
+    }

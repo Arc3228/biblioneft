@@ -1,5 +1,5 @@
 from datetime import date
-
+import re
 from django import forms
 from .models import User
 
@@ -46,19 +46,57 @@ class RegistrationForm(forms.ModelForm):
             "given": "Кем выдан",
         }
         widgets = {
-            "surname": forms.TextInput(attrs={"placeholder": "Введите фамилию"}),
-            "name": forms.TextInput(attrs={"placeholder": "Введите имя"}),
-            "lastname": forms.TextInput(attrs={"placeholder": "Введите отчество"}),
-            "date_of_birth": forms.DateInput(attrs={"placeholder": "Дата рождения", "type": "date"}),
-            "education": forms.TextInput(attrs={"placeholder": "Введите образование"}),
-            "prof": forms.TextInput(attrs={"placeholder": "Введите профессию"}),
-            "study_work": forms.TextInput(attrs={"placeholder": "Введите место учебы/работы"}),
-            "phone": forms.TextInput(attrs={"placeholder": "Введите телефон", "id": 'id_phone'}),
-            "passport": forms.TextInput(attrs={"placeholder": "Введите паспортные данные", "id": 'id_passport'}),
-            "given": forms.TextInput(attrs={"placeholder": "Кем выдан паспорт"}),
-            "password": forms.TextInput(attrs={"placeholder": "Пароль", "class": 'password_wrapper'}),
-            "password_confirm": forms.TextInput(attrs={"placeholder": "Пароль", "class": 'password_wrapper'}),
-
+            "surname": forms.TextInput(attrs={
+                "placeholder": "Введите фамилию",
+                "required": True,
+                "pattern": "[А-Яа-яЁё]+",
+            }),
+            "name": forms.TextInput(attrs={
+                "placeholder": "Введите имя",
+                "required": True,
+                "pattern": "[А-Яа-яЁё]+",
+            }),
+            "lastname": forms.TextInput(attrs={
+                "placeholder": "Введите отчество",
+                "pattern": "[А-Яа-яЁё]+",
+            }),
+            "date_of_birth": forms.DateInput(attrs={
+                "placeholder": "дд.мм.гггг",
+                "type": "date",
+                "required": True,
+                "max": date.today().strftime("%Y-%m-%d"),
+            }),
+            "education": forms.TextInput(attrs={
+                "placeholder": "Введите образование",
+                "pattern": "[А-Яа-яЁё]+",
+                "required": True,
+            }),
+            "prof": forms.TextInput(attrs={
+                "placeholder": "Введите профессию",
+                "pattern": "[А-Яа-яЁё]+",
+                "required": True,
+            }),
+            "study_work": forms.TextInput(attrs={
+                "placeholder": "Введите место учебы/работы",
+                "pattern": "[А-Яа-яЁё]+",
+                "required": True,
+            }),
+            "phone": forms.TextInput(attrs={
+                "placeholder": "Введите телефон",
+                "required": True,
+                "pattern": "\+7\d{10}",
+                'id': "tel",
+            }),
+            "passport": forms.TextInput(attrs={
+                "placeholder": "Введите паспортные данные",
+                "required": True,
+                "pattern": "\d{10}",
+            }),
+            "given": forms.TextInput(attrs={
+                "placeholder": "Кем выдан паспорт",
+                "pattern": "[А-Яа-яЁё]+",
+                "required": True,
+            }),
         }
 
     def clean_date_of_birth(self):
@@ -79,24 +117,23 @@ class RegistrationForm(forms.ModelForm):
             raise ValidationError("Паспортные данные должны состоять из 10 цифр.")
         return passport
 
-    def clean_name(self):
-        name = self.cleaned_data.get('name')
-        if not name.isalpha():
-            raise ValidationError("Имя должно содержать только буквы.")
-        return name
-
     def clean_surname(self):
         surname = self.cleaned_data.get('surname')
-        if not surname.isalpha():
-            raise ValidationError("Фамилия должна содержать только буквы.")
+        if not re.match(r'^[А-Яа-яЁё]+$', surname):
+            raise ValidationError("Фамилия должна содержать только русские буквы.")
         return surname
+
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        if not re.match(r'^[А-Яа-яЁё]+$', name):
+            raise ValidationError("Имя должно содержать только русские буквы.")
+        return name
 
     def clean_lastname(self):
         lastname = self.cleaned_data.get('lastname')
-        if lastname and not lastname.isalpha():  # Отчество может быть пустым
-            raise ValidationError("Отчество должно содержать только буквы.")
+        if lastname and not re.match(r'^[А-Яа-яЁё]+$', lastname):  # Отчество может быть пустым
+            raise ValidationError("Имя должно содержать только русские буквы.")
         return lastname
-
     def clean(self):
         cleaned_data = super().clean()
         password = cleaned_data.get("password")
@@ -104,5 +141,4 @@ class RegistrationForm(forms.ModelForm):
 
         if password and password_confirm and password != password_confirm:
             raise ValidationError("Пароли не совпадают")
-
         return cleaned_data
