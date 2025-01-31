@@ -94,7 +94,7 @@ class RegistrationForm(forms.ModelForm):
             }),
             "given": forms.TextInput(attrs={
                 "placeholder": "Кем выдан паспорт",
-                "pattern": "[А-Яа-яЁё]+",
+                "pattern": "[А-Яа-яЁё ]+",
                 "required": True,
             }),
         }
@@ -113,7 +113,7 @@ class RegistrationForm(forms.ModelForm):
 
     def clean_passport(self):
         passport = self.cleaned_data.get('passport')
-        if not passport.isdigit() or len(passport) != 10:  # Пример: 10 цифр
+        if not passport.isdigit() or len(passport) != 11:  # Пример: 10 цифр
             raise ValidationError("Паспортные данные должны состоять из 10 цифр.")
         return passport
 
