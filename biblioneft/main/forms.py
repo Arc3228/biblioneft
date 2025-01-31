@@ -70,16 +70,19 @@ class RegistrationForm(forms.ModelForm):
                 "placeholder": "Введите образование",
                 "pattern": "[А-Яа-яЁё]+",
                 "required": True,
+                "id": "id_edu"
             }),
             "prof": forms.TextInput(attrs={
                 "placeholder": "Введите профессию",
                 "pattern": "[А-Яа-яЁё]+",
                 "required": True,
+                "id": "id_prof"
             }),
             "study_work": forms.TextInput(attrs={
                 "placeholder": "Введите место учебы/работы",
                 "pattern": "[А-Яа-яЁё]+",
                 "required": True,
+                "id": "id_sw"
             }),
             "phone": forms.TextInput(attrs={
                 "placeholder": "Введите телефон",
@@ -97,6 +100,7 @@ class RegistrationForm(forms.ModelForm):
                 "placeholder": "Кем выдан паспорт",
                 "pattern": "[А-Яа-яЁё ]+",
                 "required": True,
+                "id": "id_given"
             }),
         }
 
@@ -120,9 +124,34 @@ class RegistrationForm(forms.ModelForm):
 
     def clean_lastname(self):
         lastname = self.cleaned_data.get('lastname')
-        if lastname and not re.match(r'^[А-Яа-яЁё]+$', lastname):  # Отчество может быть пустым
-            raise ValidationError("Имя должно содержать только русские буквы.")
+        if lastname and not re.match(r'^[А-Яа-яЁё\s]+$', lastname):  # Отчество может быть пустым
+            raise ValidationError("Отчество должно содержать только русские буквы.")
         return lastname
+
+    def clean_ed(self):
+        ed = self.cleaned_data.get('education')
+        if not re.match(r'^[А-Яа-яЁё]+$', ed):
+            raise ValidationError("Фамилия должна содержать только русские буквы.")
+        return ed
+
+    def clean_prof(self):
+        prof = self.cleaned_data.get('prof')
+        if not re.match(r'^[А-Яа-яЁё]+$', prof):
+            raise ValidationError("Фамилия должна содержать только русские буквы.")
+        return prof
+
+    def clean_sw(self):
+        sw = self.cleaned_data.get('study_work')
+        if not re.match(r'^[А-Яа-яЁё]+$', sw):
+            raise ValidationError("Фамилия должна содержать только русские буквы.")
+        return sw
+
+    def clean_given(self):
+        given = self.cleaned_data.get('given')
+        if not re.match(r'^[А-Яа-яЁё]+$', given):
+            raise ValidationError("Фамилия должна содержать только русские буквы.")
+        return given
+
     def clean(self):
         cleaned_data = super().clean()
         password = cleaned_data.get("password")

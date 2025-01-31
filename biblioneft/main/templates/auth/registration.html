@@ -88,8 +88,32 @@
         });
     });
 
+    // Функция для блокировки латиницы
+    function blockLatinInput(event) {
+        const input = event.target;
+        const value = input.value;
+
+        // Регулярное выражение для проверки на кириллицу
+        const cyrillicPattern = /^[А-Яа-яЁё\s]+$/;
+
+        // Если введённый символ не соответствует кириллице, удаляем его
+        if (!cyrillicPattern.test(value)) {
+            input.value = value.replace(/[^А-Яа-яЁё\s]/g, '');
+        }
+    }
+
+    // Применяем функцию к нужным полям
+    document.addEventListener("DOMContentLoaded", function () {
+        const fields = document.querySelectorAll("#id_surname, #id_name, #id_lastname", "#id_edu", "#id_prof", "#id_sw", "#id_given");
+
+        fields.forEach(field => {
+            field.addEventListener("input", blockLatinInput);
+            field.addEventListener("blur", blockLatinInput);
+        });
+    });
+
     $(document).ready(function(){
-        $('#tel').mask('+7 (000) 000-00-00');
+        $('#tel').mask('+7 (999) 999-99-99');
     });
 
     // Инициализация маски для паспорта
