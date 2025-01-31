@@ -91,6 +91,7 @@ class RegistrationForm(forms.ModelForm):
                 "placeholder": "Введите паспортные данные",
                 "required": True,
                 "pattern": "\d{10}",
+                'id': "passport",
             }),
             "given": forms.TextInput(attrs={
                 "placeholder": "Кем выдан паспорт",
@@ -104,18 +105,6 @@ class RegistrationForm(forms.ModelForm):
         if date_of_birth > date.today():
             raise ValidationError("Дата рождения не может быть в будущем.")
         return date_of_birth
-
-    def clean_phone(self):
-        phone = self.cleaned_data.get('phone')
-        if not re.match(r'^\+7\d{10}$', phone):  # Пример для российских номеров: +71234567890
-            raise ValidationError("Телефон должен быть в формате +71234567890.")
-        return phone
-
-    def clean_passport(self):
-        passport = self.cleaned_data.get('passport')
-        if not passport.isdigit() or len(passport) != 11:  # Пример: 10 цифр
-            raise ValidationError("Паспортные данные должны состоять из 10 цифр.")
-        return passport
 
     def clean_surname(self):
         surname = self.cleaned_data.get('surname')

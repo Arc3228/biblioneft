@@ -1,9 +1,5 @@
 {% extends 'base.html' %}
 <!-- Подключение библиотеки Inputmask -->
-<!-- jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<!-- Inputmask -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/jquery.inputmask.min.js"></script>
 {% block content %}
 
 <h2 class="page_title">Регистрация</h2>
@@ -28,7 +24,9 @@
     {{ form.prof }}
     {{ form.study_work }}
     {{ form.phone }}
-
+    <div class="invalid-feedback">
+        Телефон должен быть в формате +7 (999) 999-99-99
+    </div>
     {{ form.passport }}
     <div class="invalid-feedback">
         Паспортные данные должны состоять из 10 цифр.
@@ -65,35 +63,10 @@
 
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 <script>
-    $(document).ready(function(){
-        $('#tel').mask('+7 (000) 000-00-00');
-    });
-
-    // Инициализация маски для паспорта
-    Inputmask({
-        mask: "9999 999999",
-        placeholder: "_",
-        showMaskOnHover: false,
-        showMaskOnFocus: true,
-    }).mask(document.getElementById("id_passport")); // Используйте .mask() вместо .document.getElementById()
-
-    function togglePasswordVisibility(inputId) {
-        const input = document.getElementById(inputId);
-        const button = input.nextElementSibling.querySelector('i'); // Иконка внутри кнопки
-
-        if (input.type === "password") {
-            input.type = "text";
-            button.classList.remove('fa-eye');
-            button.classList.add('fa-eye-slash'); // Иконка "глаз закрыт"
-        } else {
-            input.type = "password";
-            button.classList.remove('fa-eye-slash');
-            button.classList.add('fa-eye'); // Иконка "глаз открыт"
-        }
-    }
-
     document.addEventListener("DOMContentLoaded", function () {
         const fields = document.querySelectorAll("input, select, textarea");
 
@@ -114,5 +87,33 @@
             });
         });
     });
+
+    $(document).ready(function(){
+        $('#tel').mask('+7 (000) 000-00-00');
+    });
+
+    // Инициализация маски для паспорта
+    $(document).ready(function(){
+        $('#passport').mask('0000 000000');
+    });
+
+    console.log(Inputmask); // Должен вывести функцию Inputmask
+
+    function togglePasswordVisibility(inputId) {
+        const input = document.getElementById(inputId);
+        const button = input.nextElementSibling.querySelector('i'); // Иконка внутри кнопки
+
+        if (input.type === "password") {
+            input.type = "text";
+            button.classList.remove('fa-eye');
+            button.classList.add('fa-eye-slash'); // Иконка "глаз закрыт"
+        } else {
+            input.type = "password";
+            button.classList.remove('fa-eye-slash');
+            button.classList.add('fa-eye'); // Иконка "глаз открыт"
+        }
+    }
+
+
 </script>
 {% endblock %}
