@@ -5,7 +5,7 @@ from .models import User
 
 
 class LoginForm(forms.Form):
-    phone = forms.CharField(label="Телефон", max_length=18, widget=forms.TextInput(attrs={"placeholder": 'Номер телефона'}))
+    phone = forms.CharField(label="Телефон", max_length=18, widget=forms.TextInput(attrs={"placeholder": 'Номер телефона', "id": 'tel'}))
     password = forms.CharField(label="Пароль", widget=forms.PasswordInput(attrs={"placeholder": 'Введите пароль'}))
 
 
@@ -87,13 +87,11 @@ class RegistrationForm(forms.ModelForm):
             "phone": forms.TextInput(attrs={
                 "placeholder": "Введите телефон",
                 "required": True,
-                "pattern": "\+7\d{10}",
                 'id': "tel",
             }),
             "passport": forms.TextInput(attrs={
                 "placeholder": "Введите паспортные данные",
                 "required": True,
-                "pattern": "\d{10}",
                 'id': "passport",
             }),
             "given": forms.TextInput(attrs={
@@ -131,25 +129,25 @@ class RegistrationForm(forms.ModelForm):
     def clean_ed(self):
         ed = self.cleaned_data.get('education')
         if not re.match(r'^[А-Яа-яЁё]+$', ed):
-            raise ValidationError("Фамилия должна содержать только русские буквы.")
+            raise ValidationError("Данное поле должно содержать только русские буквы.")
         return ed
 
     def clean_prof(self):
         prof = self.cleaned_data.get('prof')
         if not re.match(r'^[А-Яа-яЁё]+$', prof):
-            raise ValidationError("Фамилия должна содержать только русские буквы.")
+            raise ValidationError("Данное поле должно содержать только русские буквы.")
         return prof
 
     def clean_sw(self):
         sw = self.cleaned_data.get('study_work')
         if not re.match(r'^[А-Яа-яЁё]+$', sw):
-            raise ValidationError("Фамилия должна содержать только русские буквы.")
+            raise ValidationError("Данное поле должно содержать только русские буквы.")
         return sw
 
     def clean_given(self):
         given = self.cleaned_data.get('given')
-        if not re.match(r'^[А-Яа-яЁё]+$', given):
-            raise ValidationError("Фамилия должна содержать только русские буквы.")
+        if not re.match(r'^[А-Яа-яЁё\s]+$', given):
+            raise ValidationError("Данное поле должно содержать только русские буквы.")
         return given
 
     def clean(self):

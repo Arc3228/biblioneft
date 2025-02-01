@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Профиль пользователя</h2>
-    <p><strong>Имя:</strong> {{ user.name }}</p>
-    <p><strong>Фамилия:</strong> {{ user.surname }}</p>
-    <p><strong>Отчество:</strong> {{ user.lastname }}</p>
-    <p><strong>Дата рождения:</strong> {{ user.date_of_birth }}</p>
-    <p><strong>Образование:</strong> {{ user.education }}</p>
-    <p><strong>Профессия:</strong> {{ user.prof }}</p>
-    <p><strong>Место работы/учёбы:</strong> {{ user.study_work }}</p>
-    <p><strong>Телефон:</strong> {{ user.phone }}</p>
-    <p><strong>Паспорт:</strong> {{ user.passport }}</p>
-    <p><strong>Кем выдан:</strong> {{ user.given }}</p>
+<div class="container">
+    <p class="">{{ user.name }} {{ user.surname }}</p>
     <a href="{% url 'login' %}">Выйти</a>
+</div>
+
+
+    {% if user.is_superuser %}
+<div class="container">
+    <h1>Админ панель</h1>
+</div>
+
+    {% endif %}
+
 {% endblock %}

@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 
@@ -50,3 +51,43 @@ class User(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return self.is_superuser
+
+
+class Book(models.Model):
+    title = models.CharField(max_length=200, verbose_name="Название книги")
+    author = models.CharField(max_length=100, verbose_name="Автор")
+    description = models.TextField(verbose_name="Описание", blank=True, null=True)
+    published_date = models.DateField(verbose_name="Дата публикации")
+    isbn = models.CharField(max_length=13, unique=True, verbose_name="ISBN")
+    pages = models.PositiveIntegerField(verbose_name="Количество страниц", validators=[MinValueValidator(1)])
+    rating = models.FloatField(
+        verbose_name="Рейтинг",
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+        blank=True,
+        null=True
+    )
+    added_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Добавлено пользователем",
+        related_name="added_books"
+    )
+    borrowed_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Взято на чтение",
+        related_name="borrowed_books"
+    )
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
+
+    def __str__(self):
+        return f"{self.title} by {self.author}"
+
+    class Meta:
+        verbose_name = "Книга"
+        verbose_name_plural = "Книги"
