@@ -116,7 +116,7 @@ gap: 5px;
 align-items: center;
 }
 
-.page_title {
+.reg_auth_title {
 text-align: center;
 font-size: 24px;
 padding: 50px 0;
@@ -231,3 +231,9 @@ color: #C7B475;
     .is-invalid + .invalid-feedback {
         display: block;
     }
+
+.name {
+font-size: 36px;
+font-weight: 700;
+padding-top: 50px;
+}

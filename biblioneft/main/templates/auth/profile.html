@@ -2,14 +2,14 @@
 
 {% block content %}
 <div class="container">
-    <p class="">{{ user.name }} {{ user.surname }}</p>
+    <p class="name">{{ user.name }} {{ user.surname }}</p>
     <a href="{% url 'login' %}">Выйти</a>
 </div>
 
 
     {% if user.is_superuser %}
 <div class="container">
-    <h1>Админ панель</h1>
+    <h1 class="page_title">Админ панель</h1>
 </div>
 
     {% endif %}
