@@ -69,9 +69,16 @@ border: #C7B475 3px solid;
 border-radius: 5px;
 background: #F3F3F3;
 font-size: 16px;
-
+position: absolute;
 outline: none;
 padding:  5px 10px;
+}
+
+.search-bar img {
+position: relative;
+left: 425px;
+top: 7px;
+
 }
 
 .search-bar input::placeholder {
