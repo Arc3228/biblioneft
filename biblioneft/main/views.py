@@ -1,16 +1,15 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from .forms import LoginForm, RegistrationForm, BookForm
+from django.contrib import messages
+from .models import Book
 
 
 def index(request):
     return render(request, 'main/index.html')
-
-
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from .forms import LoginForm, RegistrationForm
-from django.contrib import messages
 
 
 def login_view(request):
@@ -48,3 +47,15 @@ def registration_view(request):
 @login_required
 def profile_view(request):
     return render(request, "auth/profile.html", {"user": request.user})
+
+
+def add_book(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('book_list')  # Перенаправляем на страницу со списком книг
+    else:
+        form = BookForm()
+
+    return render(request, 'add_book.html', {'form': form})

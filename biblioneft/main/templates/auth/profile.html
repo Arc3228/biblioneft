@@ -3,15 +3,17 @@
 {% block content %}
 <div class="container">
     <p class="name">{{ user.name }} {{ user.surname }}</p>
-    <a href="{% url 'login' %}">Выйти</a>
+    <a class="logout_btn" href="{% url 'login' %}">Выйти</a>
 </div>
-
-
     {% if user.is_superuser %}
 <div class="container">
     <h1 class="page_title">Админ панель</h1>
+    <h2>Добавить книгу</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="reg_btn">Добавить книгу</button>
+</form>
 </div>
-
     {% endif %}
-
 {% endblock %}

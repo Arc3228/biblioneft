@@ -1,7 +1,7 @@
 from datetime import date
 import re
 from django import forms
-from .models import User
+from .models import User, Book
 
 
 class LoginForm(forms.Form):
@@ -158,3 +158,33 @@ class RegistrationForm(forms.ModelForm):
         if password and password_confirm and password != password_confirm:
             raise ValidationError("Пароли не совпадают")
         return cleaned_data
+
+
+class BookForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = [
+            'title',
+            'author',
+            'description',
+            'published_date',
+            'isbn',
+            'pages',
+            'rating',
+            'added_by',
+            'borrowed_by',
+        ]
+        widgets = {
+            'published_date': forms.DateInput(attrs={'type': 'date'}),
+            'description': forms.Textarea(attrs={'rows': 4}),
+        }
+        labels = {
+            'title': 'Название книги',
+            'author': 'Автор',
+            'description': 'Описание',
+            'published_date': 'Дата публикации',
+            'isbn': 'ISBN',
+            'pages': 'Количество страниц',
+            'rating': 'Рейтинг',
+            'added_by': 'Добавлено пользователем',
+        }
