@@ -57,5 +57,4 @@ def add_book(request):
             return redirect('book_list')  # Перенаправляем на страницу со списком книг
     else:
         form = BookForm()
-
-    return render(request, 'add_book.html', {'form': form})
+        return render(request, 'add_book.html', {'form': form})

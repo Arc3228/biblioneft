@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
     <p class="name">{{ user.name }} {{ user.surname }}</p>
-    <a class="logout_btn" href="{% url 'login' %}">Выйти</a>
+    <a class="logout_btn" href="{% url 'logout' %}">Выйти</a>
 </div>
     {% if user.is_superuser %}
 <div class="container">
