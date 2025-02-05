@@ -260,10 +260,10 @@ border-radius: 5px;
 }
 
 .swiper-slide {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+display: flex;
+justify-content: center;
+align-items: center;
+}
 
 .desc_title{
 color: #255727;
