@@ -258,3 +258,9 @@ background: #dc3545;
 padding: 5px 10px;
 border-radius: 5px;
 }
+
+.swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
