@@ -264,3 +264,20 @@ border-radius: 5px;
       justify-content: center;
       align-items: center;
     }
+
+.desc_title{
+color: #255727;
+font-size: 36px;
+text-align: center;
+margin-top: 75px;
+}
+
+.bn_desc {
+margin: 0 auto;
+margin-top: 25px;
+text-align: justify;
+width: 1020px;
+font-size: 18px;
+font-weight: 500;
+}
+
