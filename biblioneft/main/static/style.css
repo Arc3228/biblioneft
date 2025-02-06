@@ -286,3 +286,19 @@ font-size: 18px;
 font-weight: 500;
 }
 
+.events_head{
+margin-top: 100px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.events_title {
+font-size: 36px;
+}
+
+.events_link {
+color: #B69F56;
+font-size: 18px;
+font-weight: 500;
+}
