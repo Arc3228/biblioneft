@@ -259,6 +259,11 @@ padding: 5px 10px;
 border-radius: 5px;
 }
 
+.swiper {
+border-top-left-radius: 50px;
+border-bottom-right-radius: 50px;
+}
+
 .swiper-slide {
 display: flex;
 justify-content: center;
