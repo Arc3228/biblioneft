@@ -297,8 +297,9 @@ justify-content: space-between;
 font-size: 36px;
 }
 
-.events_link {
+.events_link, .django_link {
 color: #B69F56;
 font-size: 18px;
 font-weight: 500;
 }
+

@@ -8,12 +8,18 @@
     {% if user.is_superuser %}
 <div class="container">
     <h1 class="page_title">Админ панель</h1>
+    <a class="django_link" href="">Перейти на админ-панель Django</a>
     <h2>Добавить книгу</h2>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="reg_btn">Добавить книгу</button>
 </form>
+    <h2>Добавить меропприятие</h2>
+    <form method="post">
+
+        <button type="submit" class="reg_btn">Добавить мероприятие</button>
+    </form>
 </div>
     {% endif %}
 {% endblock %}

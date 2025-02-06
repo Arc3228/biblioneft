@@ -91,3 +91,49 @@ class Book(models.Model):
     class Meta:
         verbose_name = "Книга"
         verbose_name_plural = "Книги"
+
+
+class Event(models.Model):
+    EVENT_TYPES = [
+        ('concert', 'Концерт'),
+        ('lecture', 'Лекция'),
+        ('workshop', 'Мастер-класс'),
+        ('meetup', 'Встреча'),
+        ('other', 'Другое'),
+    ]
+
+    title = models.CharField(max_length=200, verbose_name="Название мероприятия")
+    description = models.TextField(verbose_name="Описание", blank=True, null=True)
+    event_type = models.CharField(max_length=50, choices=EVENT_TYPES, verbose_name="Тип мероприятия")
+    start_date = models.DateTimeField(verbose_name="Дата и время начала")
+    location = models.CharField(max_length=200, verbose_name="Место проведения")
+    organizer = models.ForeignKey(
+        'User',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Организатор",
+        related_name="organized_events"
+    )
+    participants = models.ManyToManyField(
+        'User',
+        related_name="events_participated",
+        blank=True,
+        verbose_name="Участники"
+    )
+    max_participants = models.PositiveIntegerField(
+        verbose_name="Максимальное количество участников",
+        validators=[MinValueValidator(1)],
+        blank=True,
+        null=True
+    )
+    is_active = models.BooleanField(default=True, verbose_name="Активно")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
+
+    def __str__(self):
+        return f"{self.title} ({self.get_event_type_display()})"
+
+    class Meta:
+        verbose_name = "Мероприятие"
+        verbose_name_plural = "Мероприятия"
