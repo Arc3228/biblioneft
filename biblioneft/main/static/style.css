@@ -304,9 +304,10 @@ font-weight: 500;
 }
 
 .arrows {
-margin-top: 20px;
+margin-top: 50px;
 display: flex;
 justify-content: space-between;
+z-index: 99999999;
 }
 
 .events .mySwiper2 {
@@ -321,7 +322,9 @@ width: 320px;
 }
 
 .swiper-button-prev, .swiper-button-next {
-
+width: 30px;
+height: 30px;
+margin-top: -260px;
 }
 
 .form_title {
