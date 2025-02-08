@@ -259,17 +259,6 @@ padding: 5px 10px;
 border-radius: 5px;
 }
 
-.mySwiper1 {
-border-top-left-radius: 50px;
-border-bottom-right-radius: 50px;
-}
-
-.swiper-slide {
-display: flex;
-justify-content: center;
-align-items: center;
-}
-
 .desc_title{
 color: #255727;
 font-size: 36px;
@@ -284,6 +273,19 @@ text-align: justify;
 width: 1020px;
 font-size: 18px;
 font-weight: 500;
+}
+
+/* СЛАЙДЕРЫ */
+
+.mySwiper1 {
+border-top-left-radius: 50px;
+border-bottom-right-radius: 50px;
+}
+
+.swiper-slide {
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 .events_head {
@@ -331,3 +333,4 @@ margin-top: -260px;
 text-align: center;
 margin-bottom: 20px;
 }
+

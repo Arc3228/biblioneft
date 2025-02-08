@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
     <p class="name">{{ user.name }} {{ user.surname }}</p>
-    <h2>Ваши книги</h2>
+    <h2 >Ваши книги</h2>
     <a class="logout_btn" href="{% url 'logout' %}">Выйти</a>
 </div>
     {% if user.is_superuser %}
@@ -18,7 +18,6 @@
 </form>
     <h2 class="form_title">Добавить мероприятие</h2>
     <form method="post">
-
         <button type="submit" class="reg_btn">Добавить мероприятие</button>
     </form>
 </div>
