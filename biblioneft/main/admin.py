@@ -6,7 +6,7 @@ from .models import User, Event, Book
 admin.site.register(User)
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'published_date', 'isbn', 'added_by', 'borrowed_by')
+    list_display = ('title', 'author', 'published_date', 'isbn', 'added_by', 'borrowed_by', 'file_book')
     list_filter = ('author', 'published_date', 'added_by', 'borrowed_by')
     search_fields = ('title', 'author', 'isbn')
     date_hierarchy = 'published_date'

@@ -1,7 +1,7 @@
 from datetime import date
 import re
 from django import forms
-from .models import User, Book
+from .models import User, Book, Event
 
 
 class LoginForm(forms.Form):
@@ -172,7 +172,6 @@ class BookForm(forms.ModelForm):
             'pages',
             'rating',
             'added_by',
-            'borrowed_by',
             'image_book',
             'file_book',
         ]
@@ -208,3 +207,8 @@ class BookForm(forms.ModelForm):
             'rating': 'Рейтинг',
             'added_by': 'Добавлено пользователем',
         }
+
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = '__all__'

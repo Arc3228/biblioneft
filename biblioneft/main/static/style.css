@@ -323,3 +323,8 @@ width: 320px;
 .swiper-button-prev, .swiper-button-next {
 
 }
+
+.form_title {
+text-align: center;
+margin-bottom: 20px;
+}
