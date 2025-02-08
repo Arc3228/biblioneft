@@ -39,6 +39,14 @@ class User(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    role = models.ForeignKey(  # Или roles = models.ManyToManyField
+        'Role',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Роль",
+        related_name="users"
+    )
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = ['name', 'surname', 'lastname', 'date_of_birth', 'education', 'prof', 'study_work', 'passport', 'given']
     objects = UserManager()
@@ -93,6 +101,27 @@ class Book(models.Model):
     class Meta:
         verbose_name = "Книга"
         verbose_name_plural = "Книги"
+
+
+class Role(models.Model):
+    ROLE_TYPES = [
+        ('admin', 'Администратор'),
+        ('moderator', 'Модератор'),
+        ('user', 'Пользователь'),
+        ('guest', 'Гость'),
+    ]
+
+    name = models.CharField(max_length=50, choices=ROLE_TYPES, unique=True, verbose_name="Название роли")
+    description = models.TextField(verbose_name="Описание роли", blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
+
+    def __str__(self):
+        return self.get_name_display()
+
+    class Meta:
+        verbose_name = "Роль"
+        verbose_name_plural = "Роли"
 
 
 class Event(models.Model):
