@@ -106,7 +106,8 @@ class Book(models.Model):
 class Role(models.Model):
     ROLE_TYPES = [
         ('admin', 'Администратор'),
-        ('moderator', 'Модератор'),
+        ('bibliographer', 'Библиограф'),
+        ('chief', 'Руководитель клубного формирования'),
         ('user', 'Пользователь'),
         ('guest', 'Гость'),
     ]
