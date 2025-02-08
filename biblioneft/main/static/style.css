@@ -138,11 +138,11 @@ max-width: 455px;
 gap: 10px;
 }
 
-form label {
+label {
 display: none;
 }
 
-form input {
+form input, form textarea, form select {
 border: 3px solid #C7B475;
 background: #f3f3f3;
 outline: none;
@@ -286,7 +286,7 @@ font-size: 18px;
 font-weight: 500;
 }
 
-.events_head{
+.events_head {
 margin-top: 100px;
 display: flex;
 align-items: center;
@@ -310,11 +310,11 @@ justify-content: space-between;
 z-index: 99999999;
 }
 
-.events .mySwiper2 {
+.mySwiper2, .mySwiper3 {
 margin-top: 20px;
 }
 
-.events .swiper-slide{
+.events .swiper-slide, .books .swiper-slide {
 border: 2px #C7B475 solid;
 border-radius: 5px;
 height: 470px;
