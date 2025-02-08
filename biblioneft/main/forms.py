@@ -173,10 +173,30 @@ class BookForm(forms.ModelForm):
             'rating',
             'added_by',
             'borrowed_by',
+            'image_book',
+            'file_book',
         ]
         widgets = {
-            'published_date': forms.DateInput(attrs={'type': 'date'}),
             'description': forms.Textarea(attrs={'rows': 4}),
+            "title": forms.TextInput(attrs={
+                "placeholder": "Введите название",
+                "required": True,
+                "pattern": "[А-Яа-яЁё]+",
+            }),
+            "author": forms.TextInput(attrs={
+                "placeholder": "Введите автора",
+                "required": True,
+                "pattern": "[А-Яа-яЁё]+",
+            }),
+            "isbn": forms.TextInput(attrs={
+                "placeholder": "Введите isbn",
+            }),
+            "published_date": forms.DateInput(attrs={
+                "placeholder": "дд.мм.гггг",
+                "type": "date",
+                "required": True,
+                "max": date.today().strftime("%Y-%m-%d"),
+            })
         }
         labels = {
             'title': 'Название книги',

@@ -84,6 +84,8 @@ class Book(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
+    image_book = models.ImageField(upload_to='book/', blank=True, null=True)
+    file_book = models.FileField(upload_to='book/', blank=True, null=True)
 
     def __str__(self):
         return f"{self.title} by {self.author}"
@@ -119,10 +121,10 @@ class Event(models.Model):
         'User',
         related_name="events_participated",
         blank=True,
-        verbose_name="Участники"
+        verbose_name="Зрители"
     )
     max_participants = models.PositiveIntegerField(
-        verbose_name="Максимальное количество участников",
+        verbose_name="Максимальное количество зрителей",
         validators=[MinValueValidator(1)],
         blank=True,
         null=True

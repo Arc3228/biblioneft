@@ -26,15 +26,13 @@
       <h1 class="events_title">Мероприятия</h1>
       <a class="events_link" href="#">Афиша</a>
     </div>
-    <div class="arrows">
-      <img src="{% static 'images/arrow-left.png' %}" alt="">
-      <img src="{% static 'images/arrow-right.png' %}" alt="">
-    </div>
     <div class="swiper mySwiper2">
+      <div class="arrows">
+      <img class="swiper-button-prev" src="{% static 'images/arrow-left.png' %}" alt="">
+      <img class="swiper-button-next" src="{% static 'images/arrow-right.png' %}" alt="">
+    </div>
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
-
-        </div>
+        <div class="swiper-slide"></div>
         <div class="swiper-slide">Slide 2</div>
         <div class="swiper-slide">Slide 3</div>
         <div class="swiper-slide">Slide 4</div>
@@ -44,7 +42,6 @@
         <div class="swiper-slide">Slide 8</div>
         <div class="swiper-slide">Slide 9</div>
       </div>
-    <div class="swiper-pagination"></div>
   </div>
   </div>
 </div>
@@ -55,7 +52,7 @@
   <!-- Initialize Swiper -->
   <script>
     var swiper1 = new Swiper(".mySwiper1", {
-      spaceBetween: 30,
+      spaceBetween: 50,
       centeredSlides: true,
       autoplay: {
         delay: 5000,
@@ -66,9 +63,9 @@
     var swiper2 = new Swiper(".mySwiper2", {
       slidesPerView: 5,
       spaceBetween: 30,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
       },
     });
   </script>

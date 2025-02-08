@@ -9,14 +9,14 @@
     {% if user.is_superuser %}
 <div class="container">
     <h1 class="page_title">Админ панель</h1>
-    <a class="django_link" href="">Перейти на админ-панель Django</a>
+    <a class="django_link" href="/admin">Перейти на админ-панель Django</a>
     <h2>Добавить книгу</h2>
-<form method="post">
+<form method="post" enctype="multipart/form-data" action="{% url 'add_book' %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="reg_btn">Добавить книгу</button>
+    <button class="reg_btn" type="submit">Добавить книгу</button>
 </form>
-    <h2>Добавить меропприятие</h2>
+    <h2>Добавить мероприятие</h2>
     <form method="post">
 
         <button type="submit" class="reg_btn">Добавить мероприятие</button>
