@@ -68,12 +68,6 @@ class Book(models.Model):
     published_date = models.DateField(verbose_name="Дата публикации")
     isbn = models.CharField(max_length=13, unique=True, verbose_name="ISBN")
     pages = models.PositiveIntegerField(verbose_name="Количество страниц", validators=[MinValueValidator(1)])
-    rating = models.FloatField(
-        verbose_name="Рейтинг",
-        validators=[MinValueValidator(0), MaxValueValidator(10)],
-        blank=True,
-        null=True
-    )
     added_by = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,

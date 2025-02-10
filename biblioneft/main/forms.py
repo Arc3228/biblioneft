@@ -170,7 +170,6 @@ class BookForm(forms.ModelForm):
             'published_date',
             'isbn',
             'pages',
-            'rating',
             'added_by',
             'image_book',
             'file_book',
