@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User, Event, Book
+from .models import User, Event, Book, Role
 
 # Регистрируем модель User с кастомным админ-классом
 admin.site.register(User)
@@ -16,3 +16,8 @@ class EventAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', 'event_type', 'start_date', 'location', 'organizer', 'max_participants', 'created_at', 'updated_at')
     list_filter = ('event_type', 'location', 'is_active', 'max_participants')
     search_fields = ('title', 'event_type', 'organizer')
+
+
+@admin.register(Role)
+class RoleAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description')
