@@ -189,6 +189,9 @@ class BookForm(forms.ModelForm):
             "isbn": forms.TextInput(attrs={
                 "placeholder": "Введите isbn",
             }),
+            "pages": forms.TextInput(attrs={
+                "placeholder": "Введите количество страниц",
+            }),
             "published_date": forms.DateInput(attrs={
                 "placeholder": "дд.мм.гггг",
                 "type": "date",
