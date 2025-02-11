@@ -100,3 +100,7 @@ def generate_book_folder(title, author):
 #         form = BookForm()
 #
 #     return render(request, 'auth/profile.html', {'form': form})
+
+
+def chit_zal(request):
+    return render(request, 'pages/chit-zal.html')

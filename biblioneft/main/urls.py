@@ -10,4 +10,5 @@ urlpatterns = [
     path('add_book/', views.add_book_view, name='add_book'),
     path("books/", views.profile_view, name="books"),
     path("logout/", LogoutView.as_view(), name='logout'),
+    path("chit-zal/", views.chit_zal, name='chit-zal'),
 ]
