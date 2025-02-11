@@ -10,7 +10,7 @@ color: #03030A;
 
 .container {
 overflow: hidden;
-max-width: 1740px;
+max-width: 1760px;
 padding: 0 20px;
 margin: 0 auto;
 }
@@ -369,16 +369,8 @@ gap: 30px;
 margin-bottom: ;
 }
 
-.img_big {
-max-width: 1700px;
-}
-
-.pages_img_left_big {
-max-width: 1000px;
-}
-
 .pages_par1, .pages_par2 {
-max-width: 1000px;
+max-width: 1020px;
 }
 
 .pages_par1{
