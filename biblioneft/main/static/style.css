@@ -355,8 +355,17 @@ margin-bottom: 20px;
 margin-bottom: 20px;
 }
 
+.pages_first_line, .pages_second_line {
+display: flex;
+gap: 30px;
+}
+
+.pages_second_line {
+
+}
+
 .pages_par1, .pages_par2 {
-max-width: 1020px;
+max-width: 1000px;
 }
 
 .pages_par1{
