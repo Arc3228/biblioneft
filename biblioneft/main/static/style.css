@@ -286,7 +286,7 @@ align-items: center;
 justify-content: space-between;
 }
 
-.events_title {
+.events_title, .pages_title {
 font-size: 36px;
 }
 
