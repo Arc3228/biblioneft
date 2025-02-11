@@ -9,7 +9,8 @@ color: #03030A;
 }
 
 .container {
-max-width: 1680px;
+overflow: hidden;
+max-width: 1740px;
 padding: 0 20px;
 margin: 0 auto;
 }
@@ -355,13 +356,25 @@ margin-bottom: 20px;
 margin-bottom: 20px;
 }
 
+.pages_first_line, .pages_second_line, .img_big {
+margin-bottom: 50px;
+}
+
 .pages_first_line, .pages_second_line {
 display: flex;
 gap: 30px;
 }
 
 .pages_second_line {
+margin-bottom: ;
+}
 
+.img_big {
+max-width: 1700px;
+}
+
+.pages_img_left_big {
+max-width: 1000px;
 }
 
 .pages_par1, .pages_par2 {
