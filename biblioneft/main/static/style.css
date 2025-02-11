@@ -349,3 +349,12 @@ margin-bottom: 15px;
 .no_books {
 margin-bottom: 20px;
 }
+
+/* СТРАНИЦЫ ПРОСТРАНСТВ */
+.pages_par1, .pages_par2 {
+max-width: 1020px;
+}
+
+.pages_par1{
+margin-bottom: 20px;
+}
