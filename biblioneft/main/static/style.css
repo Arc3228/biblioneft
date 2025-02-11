@@ -351,6 +351,10 @@ margin-bottom: 20px;
 }
 
 /* СТРАНИЦЫ ПРОСТРАНСТВ */
+.pages_title {
+margin-bottom: 20px;
+}
+
 .pages_par1, .pages_par2 {
 max-width: 1020px;
 }
