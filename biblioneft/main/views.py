@@ -116,3 +116,7 @@ def lecktoriy(request):
 
 def cafe(request):
     return render(request, 'pages/cafe.html')
+
+
+def book_list(request):
+    return render(request, 'pages/book_list.html')
