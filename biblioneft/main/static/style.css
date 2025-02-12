@@ -325,7 +325,6 @@ margin-top: -260px;
     position: relative;
     background-size: cover;
     background-position: center;
-    height: 300px; /* Вы можете изменить высоту по своему усмотрению */
     transition: opacity 0.3s ease;
 }
 
