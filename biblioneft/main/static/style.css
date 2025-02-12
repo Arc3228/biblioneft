@@ -357,6 +357,10 @@ margin-bottom: 20px;
 margin-bottom: 20px;
 }
 
+.pages_first_line {
+margin-top: 50px;
+}
+
 .pages_first_line, .pages_second_line, .img_big {
 margin-bottom: 50px;
 }
