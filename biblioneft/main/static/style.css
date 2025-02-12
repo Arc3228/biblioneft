@@ -378,3 +378,6 @@ max-width: 1020px;
 margin-bottom: 20px;
 }
 
+.pages_list li {
+list-style-type: "- ";
+}

@@ -104,3 +104,7 @@ def generate_book_folder(title, author):
 
 def chit_zal(request):
     return render(request, 'pages/chit-zal.html')
+
+
+def office(request):
+    return render(request, 'pages/office.html')
