@@ -35,7 +35,7 @@
           <div class="swiper-slide"
                style="background-image: url('{% if book.image_book %}{{ book.image_book.url }}{% else %}{% static '' %}{% endif %}');">
               <div class="book-info">
-                  <h3>{{ book.title }}</h3>
+                  <a  href="#" class="book_title_link">{{ book.title }}</a>
                   <p>{{ book.author }}</p>
               </div>
           </div>

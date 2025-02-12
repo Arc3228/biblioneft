@@ -357,6 +357,11 @@ margin-top: -260px;
     opacity: 1;
 }
 
+.book_title_link {
+font-size: 18px;
+font-weight: 500;
+}
+
 /* ПРОФИЛЬ */
 
 .name {
