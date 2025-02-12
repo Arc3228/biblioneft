@@ -11,7 +11,8 @@ from .models import Book
 
 
 def index(request):
-    return render(request, 'main/index.html')
+    books = Book.objects.exclude(image_book__isnull=True).exclude(image_book__exact='')
+    return render(request, 'main/index.html', {'books': books})
 
 
 def login_view(request):

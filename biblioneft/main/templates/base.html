@@ -30,10 +30,10 @@
                 </li>
                 <li><p class="odd" onclick="openDropdown">Пространства</p>
                     <select>
-                        <option value="Читальный зал"><a href="#">Читальный зал</a></option>
-                        <option value="Проектный офис"><a href="#">Проектый офис</a></option>
-                        <option value="Тайм-кафе"><a href="#">Тайм-кафе</a></option>
-                        <option value="Лекторий"><a href="#">Лекторий</a></option>
+                        <option value="Читальный зал"><a href="{% url 'chit-zal' %}">Читальный зал</a></option>
+                        <option value="Проектный офис"><a href="{% url 'office' %}">Проектый офис</a></option>
+                        <option value="Тайм-кафе"><a href="{% url 'cafe' %}">Тайм-кафе</a></option>
+                        <option value="Лекторий"><a href="{% url 'lecktoriy' %}">Лекторий</a></option>
                     </select>
                 </li>
                 <li><p class="odd" onclick="openDropdown">Читателям</p>

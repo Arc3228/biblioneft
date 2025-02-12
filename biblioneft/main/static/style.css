@@ -321,6 +321,43 @@ height: 30px;
 margin-top: -260px;
 }
 
+  .mySwiper2 .swiper-slide {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    height: 300px; /* Вы можете изменить высоту по своему усмотрению */
+    transition: opacity 0.3s ease;
+}
+
+.mySwiper2 .swiper-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mySwiper2 .swiper-slide:hover::before {
+    opacity: 1;
+}
+
+.book-info {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mySwiper2 .swiper-slide:hover .book-info {
+    opacity: 1;
+}
+
 /* ПРОФИЛЬ */
 
 .name {
