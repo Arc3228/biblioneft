@@ -112,3 +112,7 @@ def office(request):
 
 def lecktoriy(request):
     return render(request, 'pages/lecktoriy.html')
+
+
+def cafe(request):
+    return render(request, 'pages/cafe.html')
