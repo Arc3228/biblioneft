@@ -108,3 +108,7 @@ def chit_zal(request):
 
 def office(request):
     return render(request, 'pages/office.html')
+
+
+def lecktoriy(request):
+    return render(request, 'pages/lecktoriy.html')
