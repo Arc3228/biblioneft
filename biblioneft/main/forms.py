@@ -203,14 +203,17 @@ class BookForm(forms.ModelForm):
             'title': 'Название книги',
             'author': 'Автор',
             'description': 'Описание',
-            'published_date': 'Дата публикации',
             'isbn': 'ISBN',
             'pages': 'Количество страниц',
-            'rating': 'Рейтинг',
-            'added_by': 'Добавлено пользователем',
         }
 
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = '__all__'
+        fields = [
+            'title',
+            'description',
+            'event_type',
+            'start_date',
+            'organizer',
+        ]
