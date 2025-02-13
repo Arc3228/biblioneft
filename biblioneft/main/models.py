@@ -26,6 +26,28 @@ class UserManager(BaseUserManager):
         return self.create_user(phone, password, **extra_fields)
 
 
+class Role(models.Model):
+    ROLE_TYPES = [
+        ('admin', 'Администратор'),
+        ('bibliographer', 'Библиограф'),
+        ('chief', 'Руководитель клубного формирования'),
+        ('user', 'Пользователь'),
+        ('guest', 'Гость'),
+    ]
+
+    name = models.CharField(max_length=50, choices=ROLE_TYPES, unique=True, verbose_name="Название роли")
+    description = models.TextField(verbose_name="Описание роли", blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
+
+    def __str__(self):
+        return self.get_name_display()
+
+    class Meta:
+        verbose_name = "Роль"
+        verbose_name_plural = "Роли"
+
+
 class User(AbstractBaseUser):
     name = models.CharField(max_length=30)
     surname = models.CharField(max_length=100)
@@ -40,8 +62,8 @@ class User(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-    role = models.ForeignKey(  # Или roles = models.ManyToManyField
-        'Role',
+    role = models.ForeignKey(
+        Role,  # Используем строковое имя модели
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -75,7 +97,7 @@ class Book(models.Model):
         null=True,
         blank=True,
         verbose_name="Добавлено пользователем",
-        related_name="added_books"
+        related_name="added_books"  # Уникальный related_name
     )
     borrowed_by = models.ForeignKey(
         User,
@@ -83,7 +105,7 @@ class Book(models.Model):
         null=True,
         blank=True,
         verbose_name="Взято на чтение",
-        related_name="borrowed_books"
+        related_name="borrowed_books_by"  # Уникальный related_name
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
@@ -97,22 +119,19 @@ class Book(models.Model):
         verbose_name = "Книга"
         verbose_name_plural = "Книги"
 
+
 class BorrowedBook(models.Model):
     user = models.ForeignKey(
-        'User',
+        User,  # Используем строковое имя модели
         on_delete=models.CASCADE,
         verbose_name="Пользователь",
-        related_name="borrowed_books_user",
-        null = True,  # Разрешить NULL
-        blank = True  # Разрешить пустое значение в формах
+        related_name="borrowed_books_user"
     )
     book = models.ForeignKey(
-        'Book',
+        Book,  # Используем строковое имя модели
         on_delete=models.CASCADE,
         verbose_name="Книга",
-        related_name="borrowed_books_book",
-        null=True,  # Разрешить NULL
-        blank=True  # Разрешить пустое значение в формах
+        related_name="borrowed_books_book"
     )
     borrowed_date = models.DateTimeField(default=timezone.now, verbose_name="Дата взятия")
     returned_date = models.DateTimeField(null=True, blank=True, verbose_name="Дата возврата")
@@ -124,27 +143,6 @@ class BorrowedBook(models.Model):
     class Meta:
         verbose_name = "Взятая книга"
         verbose_name_plural = "Взятые книги"
-
-class Role(models.Model):
-    ROLE_TYPES = [
-        ('admin', 'Администратор'),
-        ('bibliographer', 'Библиограф'),
-        ('chief', 'Руководитель клубного формирования'),
-        ('user', 'Пользователь'),
-        ('guest', 'Гость'),
-    ]
-
-    name = models.CharField(max_length=50, choices=ROLE_TYPES, unique=True, verbose_name="Название роли")
-    description = models.TextField(verbose_name="Описание роли", blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
-    updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
-
-    def __str__(self):
-        return self.get_name_display()
-
-    class Meta:
-        verbose_name = "Роль"
-        verbose_name_plural = "Роли"
 
 
 class Event(models.Model):
@@ -162,7 +160,7 @@ class Event(models.Model):
     start_date = models.DateTimeField(verbose_name="Дата и время начала")
     location = models.CharField(max_length=200, verbose_name="Место проведения")
     organizer = models.ForeignKey(
-        'User',
+        User,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -170,7 +168,7 @@ class Event(models.Model):
         related_name="organized_events"
     )
     participants = models.ManyToManyField(
-        'User',
+        User,
         related_name="events_participated",
         blank=True,
         verbose_name="Зрители"
