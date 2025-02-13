@@ -102,13 +102,17 @@ class BorrowedBook(models.Model):
         'User',
         on_delete=models.CASCADE,
         verbose_name="Пользователь",
-        related_name="borrowed_books_user"
+        related_name="borrowed_books_user",
+        null = True,  # Разрешить NULL
+        blank = True  # Разрешить пустое значение в формах
     )
     book = models.ForeignKey(
         'Book',
         on_delete=models.CASCADE,
         verbose_name="Книга",
-        related_name="borrowed_books_book"
+        related_name="borrowed_books_book",
+        null=True,  # Разрешить NULL
+        blank=True  # Разрешить пустое значение в формах
     )
     borrowed_date = models.DateTimeField(default=timezone.now, verbose_name="Дата взятия")
     returned_date = models.DateTimeField(null=True, blank=True, verbose_name="Дата возврата")
