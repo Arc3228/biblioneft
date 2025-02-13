@@ -24,4 +24,6 @@ class RoleAdmin(admin.ModelAdmin):
 
 @admin.register(BorrowedBook)
 class BorrowedBookAdmin(admin.ModelAdmin):
-   list_display = ('user', 'book', 'borrowed_date', 'returned_date', 'is_returned')
+    list_display = ('user', 'book', 'borrowed_date', 'returned_date', 'is_returned')
+    list_filter = ('is_returned',)
+    search_fields = ('user__name', 'book__title')
