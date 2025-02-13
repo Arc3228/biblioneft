@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
@@ -96,6 +97,29 @@ class Book(models.Model):
         verbose_name = "Книга"
         verbose_name_plural = "Книги"
 
+class BorrowedBook(models.Model):
+    user = models.ForeignKey(
+        'User',
+        on_delete=models.CASCADE,
+        verbose_name="Пользователь",
+        related_name="borrowed_books_user"
+    )
+    book = models.ForeignKey(
+        'Book',
+        on_delete=models.CASCADE,
+        verbose_name="Книга",
+        related_name="borrowed_books_book"
+    )
+    borrowed_date = models.DateTimeField(default=timezone.now, verbose_name="Дата взятия")
+    returned_date = models.DateTimeField(null=True, blank=True, verbose_name="Дата возврата")
+    is_returned = models.BooleanField(default=False, verbose_name="Возвращена")
+
+    def __str__(self):
+        return f"{self.user} взял(а) книгу '{self.book}'"
+
+    class Meta:
+        verbose_name = "Взятая книга"
+        verbose_name_plural = "Взятые книги"
 
 class Role(models.Model):
     ROLE_TYPES = [

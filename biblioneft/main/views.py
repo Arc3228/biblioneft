@@ -120,4 +120,5 @@ def cafe(request):
 
 
 def book_list(request):
-    return render(request, 'pages/book_list.html')
+    books = Book.objects.exclude(image_book__isnull=True).exclude(image_book__exact='')
+    return render(request, 'pages/book_list.html', {'books': books})

@@ -274,7 +274,7 @@ border-top-left-radius: 50px;
 border-bottom-right-radius: 50px;
 }
 
-.swiper-slide {
+.swiper-slide, .book_cards {
 display: flex;
 justify-content: center;
 align-items: center;
@@ -308,7 +308,7 @@ z-index: 99999999;
 margin-top: 20px;
 }
 
-.events .swiper-slide, .books .swiper-slide {
+.events .swiper-slide, .books .swiper-slide, .book_card {
 border: 2px #C7B475 solid;
 border-radius: 5px;
 height: 470px;
@@ -321,14 +321,14 @@ height: 30px;
 margin-top: -260px;
 }
 
-  .mySwiper2 .swiper-slide {
+.mySwiper2 .swiper-slide, .book_card {
     position: relative;
     background-size: cover;
     background-position: center;
     transition: opacity 0.3s ease;
 }
 
-.mySwiper2 .swiper-slide::before {
+.mySwiper2 .swiper-slide::before, .book_card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -340,7 +340,7 @@ margin-top: -260px;
     transition: opacity 0.3s ease;
 }
 
-.mySwiper2 .swiper-slide:hover::before {
+.mySwiper2 .swiper-slide:hover::before, .book_card:hover::before {
     opacity: 1;
 }
 
@@ -348,12 +348,11 @@ margin-top: -260px;
     position: absolute;
     bottom: 20px;
     left: 20px;
-    color: white;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-.mySwiper2 .swiper-slide:hover .book-info {
+.mySwiper2 .swiper-slide:hover .book-info, .book_card:hover .book-info {
     opacity: 1;
 }
 
@@ -372,7 +371,6 @@ padding-bottom: 15px;
 }
 
 .logout_btn {
-
 color: #F3F3F3;
 background: #dc3545;
 padding: 5px 10px;
@@ -402,7 +400,7 @@ margin-bottom: 20px;
 margin-top: 50px;
 }
 
-.pages_first_line, .pages_second_line, .img_big {
+.pages_first_line, .pages_second_line, .pages_img_big {
 margin-bottom: 50px;
 }
 
@@ -424,5 +422,10 @@ list-style-type: "- ";
 }
 
 .books_title {
+margin-top: 50px;
+}
+
+.book_cards {
+gap: 30px;
 margin-top: 50px;
 }

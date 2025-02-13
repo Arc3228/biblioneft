@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User, Event, Book, Role
+from .models import User, Event, Book, Role, BorrowedBook
 
 # Регистрируем модель User с кастомным админ-классом
 admin.site.register(User)
@@ -21,3 +21,7 @@ class EventAdmin(admin.ModelAdmin):
 @admin.register(Role)
 class RoleAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
+
+@admin.register(BorrowedBook)
+class BorrowedBookAdmin(admin.ModelAdmin):
+   list_display = ('user', 'book', 'borrowed_date', 'returned_date', 'is_returned')
